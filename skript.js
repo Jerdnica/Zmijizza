@@ -17,7 +17,7 @@ let zmija = [{
 window.onload = function() {
     canvas = document.getElementById('myCanvas');
     document.addEventListener('keydown', function(event) {
-
+        let prosliSmjer = smjer;
         if(event.key == "w" ||event.key =="a"||event.key =="s"|| event.key=="d") {
             smjer = event.key;
         }
@@ -27,8 +27,23 @@ window.onload = function() {
         else if(k === 39) smjer = 'd';
         else if(k === 40) smjer = 's';
 
+        if(suprotniSmjerovi(prosliSmjer,smjer))
+        {
+            smjer = prosliSmjer;
+        }
+
     }, false);
 };
+let suprotniSmjerovi = function(smjer1,smjer2){
+    if(smjer1 === 'w')
+        return smjer2 ==='s';
+    else if(smjer1 === 'a')
+        return smjer2 ==='d';
+    else if(smjer1 === 's')
+        return smjer2 ==='w';
+    else if(smjer1 === 'd')
+        return smjer2 ==='a';
+}
 let randomHrana = function()
 {
     let x = Math.floor((Math.random()*(sirina/10)) );
