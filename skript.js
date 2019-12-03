@@ -13,10 +13,17 @@ let zmija = [{
 },{x: 30,
     y: 30
 }];
-
+lock = false;
 window.onload = function() {
     canvas = document.getElementById('myCanvas');
     document.addEventListener('keydown', function(event) {
+        if(lock){
+            console.log("nj");
+            return;
+
+        }
+
+        lock = true;
         let prosliSmjer = smjer;
         if(event.key == "w" ||event.key =="a"||event.key =="s"|| event.key=="d") {
             smjer = event.key;
@@ -26,12 +33,10 @@ window.onload = function() {
         else if(k === 38) smjer = 'w';
         else if(k === 39) smjer = 'd';
         else if(k === 40) smjer = 's';
-
         if(suprotniSmjerovi(prosliSmjer,smjer))
         {
             smjer = prosliSmjer;
         }
-
     }, false);
 };
 let suprotniSmjerovi = function(smjer1,smjer2){
@@ -116,6 +121,7 @@ let pomjeri = function(ctx, zmija,smjer, trebaOstavitiZadnji){
     }
 
     zmija.unshift(zadnji);
+    lock = false;
 };
 let c = document.getElementById("myCanvas");
 let ctx = c.getContext("2d");
